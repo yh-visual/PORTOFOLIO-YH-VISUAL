@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - M. Yusron Hariri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple-deep: #4c1d95;
+            --purple-mid: #7c3aed;
+            --purple-light: #c084fc;
+            --blue-deep: #1e3a8a;
+            --blue-mid: #2563eb;
+            --blue-light: #5e96da;
+            --bg: #010409;
+            --surface: rgba(255,255,255,0.04);
+            --border: rgba(139,92,246,0.15);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(76,29,149,0.4) 0%, transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(30,58,138,0.4) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(17,24,39,1) 0%, #010409 100%);
+            background-attachment: fixed;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-lines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                repeating-linear-gradient(135deg, rgba(139,92,246,0.03) 0px, rgba(139,92,246,0.03) 1px, transparent 1px, transparent 10px),
+                repeating-linear-gradient(45deg, rgba(30,58,138,0.03) 0px, rgba(30,58,138,0.03) 1px, transparent 1px, transparent 10px);
+            z-index: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+        }
+        nav.scrolled {
+            background: rgba(1,4,9,0.75);
+            backdrop-filter: blur(18px);
+            padding: 14px 5%;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--blue-light), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: linear-gradient(90deg, var(--blue-light), var(--purple-light));
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ===== HERO (original, kept intact with nav offset) ===== */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-container {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .hero-content { flex: 1; padding-right: 50px; z-index: 2; }
+        .hero-content h1 {
+            font-size: 3.5rem; font-weight: 800;
+            line-height: 1.1; margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(67,7,128,0.5);
+            animation: fadeUp 0.9s ease both;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #5e96da, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.1rem; line-height: 1.8; color: #ffffff;
+            margin-bottom: 30px;
+            background: rgba(1,4,9,0.5); padding: 10px;
+            border-radius: 8px; backdrop-filter: blur(5px);
+            animation: fadeUp 0.9s 0.2s ease both;
+        }
+        .hero-image-wrapper {
+            flex: 0.7; display: flex;
+            justify-content: center; align-items: center;
+            position: relative;
+            animation: fadeLeft 0.9s 0.3s ease both;
+        }
+        .photo-blend { position: relative; width: 100%; max-width: 320px; }
+        .photo-blend img {
+            width: 100%; display: block; border-radius: 20px;
+            position: relative; z-index: 2;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+                                linear-gradient(to bottom, black 85%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+                        linear-gradient(to bottom, black 85%, transparent 100%);
+        }
+        .photo-blend::before {
+            content: "";
+            position: absolute; top: 75%; left: 75%;
+            transform: translate(-50%, -50%);
+            width: 140%; height: 140%;
+            background: radial-gradient(circle, rgba(72,31,168,0.3) 0%, transparent 70%);
+            z-index: 1; filter: blur(20px);
+        }
+        .photo-blend::after {
+            content: "";
+            position: absolute; bottom: -20px; left: 10%;
+            width: 80%; height: 40px;
+            background: rgba(0,0,0,0.7); border-radius: 50%;
+            z-index: 1; filter: blur(15px);
+        }
+        .cta-button {
+            display: inline-block; padding: 15px 35px;
+            background: linear-gradient(45deg, #2563eb, #7c3aed);
+            color: white; text-decoration: none; border-radius: 50px;
+            font-weight: 600; transition: 0.3s;
+            position: relative; z-index: 2;
+            animation: fadeUp 0.9s 0.4s ease both;
+            box-shadow: 0 0 30px rgba(124,58,237,0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(124,58,237,0.5);
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+        .scroll-indicator span {
+            font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .scroll-line {
+            width: 1px; height: 50px;
+            background: linear-gradient(to bottom, var(--purple-light), transparent);
+        }
+        @keyframes bounce {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ===== SECTION SHARED ===== */
+        section { position: relative; z-index: 1; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--purple-light);
+            border: 1px solid var(--border);
+            padding: 6px 18px; border-radius: 50px;
+            margin-bottom: 18px;
+            background: rgba(124,58,237,0.08);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; font-weight: 700;
+            line-height: 1.15;
+        }
+        .section-title em {
+            font-style: italic;
+            background: linear-gradient(45deg, var(--blue-light), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-divider {
+            width: 60px; height: 2px;
+            background: linear-gradient(90deg, var(--blue-mid), var(--purple-mid));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== ABOUT ===== */
+        #about {
+            padding: 120px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-visual {
+            position: relative;
+        }
+        .about-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(124,58,237,0.05) 60deg, transparent 120deg);
+            animation: spin 8s linear infinite;
+        }
+        .stat-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            position: relative; z-index: 1;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: 2.8rem; font-weight: 800;
+            background: linear-gradient(45deg, var(--blue-light), var(--purple-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.78rem; color: var(--text-muted);
+            letter-spacing: 1px; margin-top: 6px;
+        }
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--text-muted); line-height: 1.9;
+            margin-bottom: 20px; font-size: 0.95rem;
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+        .skill-tag {
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.78rem; color: var(--purple-light);
+            background: rgba(124,58,237,0.07);
+            transition: all 0.3s;
+        }
+        .skill-tag:hover {
+            background: rgba(124,58,237,0.2);
+            border-color: var(--purple-light);
+            transform: translateY(-2px);
+        }
+
+        /* ===== SERVICES ===== */
+        #services {
+            padding: 120px 5%;
+        }
+        .services-inner { max-width: 1200px; margin: 0 auto; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06));
+            opacity: 0;
+            transition: opacity 0.4s;
+            border-radius: inherit;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(139,92,246,0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(124,58,237,0.1);
+        }
+        .service-card:hover::after { opacity: 1; }
+        .service-icon {
+            font-size: 2.6rem;
+            margin-bottom: 24px;
+            display: block;
+            filter: drop-shadow(0 0 12px rgba(192,132,252,0.4));
+        }
+        .service-card h3 {
+            font-size: 1.25rem; font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .service-card p {
+            color: var(--text-muted); font-size: 0.88rem;
+            line-height: 1.8;
+        }
+        .service-card .service-number {
+            position: absolute;
+            top: 24px; right: 28px;
+            font-size: 4rem; font-weight: 800;
+            color: rgba(255,255,255,0.03);
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== PORTFOLIO GALLERY ===== */
+        #portfolio { padding: 120px 5%; }
+        .portfolio-inner { max-width: 1200px; margin: 0 auto; }
+        .gallery-filter {
+            display: flex; gap: 12px; justify-content: center;
+            margin-bottom: 50px; flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 22px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem; letter-spacing: 1px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(45deg, var(--blue-mid), var(--purple-mid));
+            border-color: transparent;
+            color: #fff;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 16px;
+        }
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+        .gallery-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+        .gallery-placeholder {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; gap: 10px;
+            background: linear-gradient(135deg, rgba(30,58,138,0.2), rgba(76,29,149,0.2));
+            transition: all 0.4s;
+        }
+        .gallery-placeholder span { font-size: 2rem; opacity: 0.5; }
+        .gallery-placeholder p { font-size: 0.8rem; color: var(--text-muted); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(1,4,9,0.9) 0%, transparent 50%);
+            opacity: 0; transition: opacity 0.4s;
+            display: flex; align-items: flex-end;
+            padding: 24px;
+        }
+        .gallery-overlay h4 { font-size: 1rem; transform: translateY(10px); transition: transform 0.4s; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .gallery-overlay h4 { transform: translateY(0); }
+        .gallery-item:hover .gallery-placeholder {
+            background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(124,58,237,0.3));
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        #testimonials { padding: 120px 5%; }
+        .testi-inner { max-width: 1000px; margin: 0 auto; }
+        .testi-track {
+            display: flex; gap: 24px;
+            overflow: hidden;
+        }
+        .testi-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            flex: 0 0 calc(50% - 12px);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .testi-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem; line-height: 0.6;
+            color: rgba(139,92,246,0.2);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .testi-text {
+            color: var(--text-muted); font-size: 0.92rem;
+            line-height: 1.9; margin-bottom: 28px;
+            font-style: italic;
+        }
+        .testi-author { display: flex; align-items: center; gap: 14px; }
+        .author-avatar {
+            width: 46px; height: 46px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue-mid), var(--purple-mid));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .author-name { font-weight: 600; font-size: 0.9rem; }
+        .author-role { font-size: 0.78rem; color: var(--text-muted); }
+        .stars { color: #f59e0b; font-size: 0.8rem; margin-top: 3px; }
+
+        /* ===== CONTACT ===== */
+        #contact { padding: 120px 5%; }
+        .contact-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; margin-bottom: 16px;
+        }
+        .contact-info p {
+            color: var(--text-muted); line-height: 1.9;
+            margin-bottom: 40px;
+        }
+        .contact-links { display: flex; flex-direction: column; gap: 16px; }
+        .contact-link {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            text-decoration: none; color: var(--text);
+            transition: all 0.3s;
+        }
+        .contact-link:hover {
+            border-color: rgba(139,92,246,0.4);
+            background: rgba(124,58,237,0.1);
+            transform: translateX(6px);
+        }
+        .contact-link-icon { font-size: 1.4rem; }
+        .contact-link-label { font-size: 0.78rem; color: var(--text-muted); }
+        .contact-link-value { font-size: 0.9rem; font-weight: 500; }
+
+        .contact-form { display: flex; flex-direction: column; gap: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label {
+            font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .form-group input,
+        .form-group textarea {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            resize: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(139,92,246,0.5);
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+        }
+        .form-group textarea { height: 130px; }
+        .submit-btn {
+            padding: 16px 40px;
+            background: linear-gradient(45deg, var(--blue-mid), var(--purple-mid));
+            color: #fff; border: none; border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s;
+            align-self: flex-start;
+            box-shadow: 0 0 30px rgba(124,58,237,0.3);
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(124,58,237,0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 5%;
+            position: relative; z-index: 1;
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, var(--blue-light), var(--purple-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+        .social-links { display: flex; gap: 14px; }
+        .social-link {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--surface); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .social-link:hover {
+            border-color: var(--purple-light);
+            background: rgba(124,58,237,0.15);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes floatY {
+            0%,100% { transform: translateY(0px); }
+            50%      { transform: translateY(-12px); }
+        }
+        @keyframes pulse-glow {
+            0%,100% { box-shadow: 0 0 20px rgba(124,58,237,0.3); }
+            50%      { box-shadow: 0 0 50px rgba(124,58,237,0.6); }
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* floating hero photo */
+        .hero-image-wrapper .photo-blend {
+            animation: floatY 5s ease-in-out infinite;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 50px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(5) { grid-column: span 2; }
+            .testi-card { flex: 0 0 100%; }
+            .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+        }
+        @media (max-width: 800px) {
+            .hero-container { flex-direction: column-reverse; text-align: center; }
+            .hero-content { padding-right: 0; margin-top: 30px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .photo-blend { max-width: 280px; }
+            .section-title { font-size: 2rem; }
+            nav { padding: 16px 5%; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-lines"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <div class="nav-logo">YH.</div>
+    <ul class="nav-links">
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#services">Layanan</a></li>
+        <li><a href="#portfolio">Karya</a></li>
+        <li><a href="#testimonials">Testimoni</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>
+
+<!-- HERO (original) -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1>Visual Storytelling by <br>
+                <span class="gradient-text">M. Yusron Hariri</span>
+            </h1>
+            <p>Keindahan di Setiap Sudut, Cerita di Setiap Frame. Saya menghidupkan suasana melalui <b>Fotografi</b>, <b>Videografi</b>, dan <b>Drone Cinematography</b>.</p>
+            <a href="#portfolio" class="cta-button">Lihat Karya</a>
+        </div>
+        <div class="hero-image-wrapper">
+            <div class="photo-blend">
+                <img src="foto cover.jpeg" alt="M. Yusron Hariri">
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div style="max-width:1200px; margin:0 auto; padding:0 5%">
+        <div class="section-header reveal">
+            <div class="section-tag">Tentang Saya</div>
+            <h2 class="section-title">Passionate <em>Visual Creator</em></h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-visual reveal reveal-delay-1">
+                <div class="about-card">
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="150">0</div>
+                            <div class="stat-label">Proyek Selesai</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Tahun Pengalaman</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="80">0</div>
+                            <div class="stat-label">Klien Puas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="12">0</div>
+                            <div class="stat-label">Penghargaan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text reveal reveal-delay-2">
+                <h3>Mengabadikan Momen,<br>Menciptakan Kenangan</h3>
+                <p>Saya adalah seorang visual storyteller yang berdedikasi dalam menangkap keindahan dunia melalui lensa. Dengan pengalaman lebih dari 5 tahun, saya telah mengerjakan berbagai proyek mulai dari pernikahan mewah, event korporat, hingga aerial cinematography.</p>
+                <p>Setiap frame adalah sebuah karya seni. Saya percaya bahwa momen terbaik adalah yang terasa natural, bukan yang dipaksakan.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">📷 Portrait</span>
+                    <span class="skill-tag">🎬 Sinematik</span>
+                    <span class="skill-tag">🚁 Drone FPV</span>
+                    <span class="skill-tag">💒 Wedding</span>
+                    <span class="skill-tag">🏢 Korporat</span>
+                    <span class="skill-tag">✏️ Color Grading</span>
+                    <span class="skill-tag">🎞️ Editing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <div class="services-inner">
+        <div class="section-header reveal">
+            <div class="section-tag">Layanan</div>
+            <h2 class="section-title">Apa yang Saya <em>Tawarkan</em></h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal reveal-delay-1">
+                <span class="service-number">01</span>
+                <span class="service-icon">📷</span>
+                <h3>Fotografi Profesional</h3>
+                <p>Dari potret ekspresif hingga foto produk komersial, saya menghadirkan kualitas studio dalam setiap sesi pemotretan dengan pencahayaan yang sempurna.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-2">
+                <span class="service-number">02</span>
+                <span class="service-icon">🎬</span>
+                <h3>Videografi Sinematik</h3>
+                <p>Produksi video berkualitas sinema untuk acara pernikahan, korporat, dan iklan. Setiap frame dirancang untuk menyentuh hati penonton.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-3">
+                <span class="service-number">03</span>
+                <span class="service-icon">🚁</span>
+                <h3>Drone Cinematography</h3>
+                <p>Perspektif udara yang memukau menggunakan drone terkini. Sempurna untuk real estate, pariwisata, dan dokumentasi event skala besar.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-1">
+                <span class="service-number">04</span>
+                <span class="service-icon">🎞️</span>
+                <h3>Post-Production</h3>
+                <p>Editing dan color grading profesional yang mengubah rekaman mentah menjadi karya visual yang memukau dan berkesan.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-2">
+                <span class="service-number">05</span>
+                <span class="service-icon">💒</span>
+                <h3>Wedding Coverage</h3>
+                <p>Dokumentasi hari terspesial dalam hidup Anda. Setiap tawa, air mata, dan momen bahagia terabadikan dengan indah.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-3">
+                <span class="service-number">06</span>
+                <span class="service-icon">🏢</span>
+                <h3>Corporate Event</h3>
+                <p>Profesional dan tepat waktu. Layanan dokumentasi event korporat, konferensi, dan peluncuran produk yang prestisius.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO GALLERY -->
+<section id="portfolio">
+    <div class="portfolio-inner">
+        <div class="section-header reveal">
+            <div class="section-tag">Portfolio</div>
+            <h2 class="section-title">Karya <em>Terbaik</em> Saya</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="gallery-filter reveal">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="foto">Fotografi</button>
+            <button class="filter-btn" data-filter="video">Videografi</button>
+            <button class="filter-btn" data-filter="drone">Drone</button>
+            <button class="filter-btn" data-filter="wedding">Wedding</button>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>📷</span>
+                    <p>Foto Portrait</p>
+                </div>
+                <div class="gallery-overlay"><h4>Golden Hour Portrait</h4></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>🚁</span>
+                    <p>Drone Aerial</p>
+                </div>
+                <div class="gallery-overlay"><h4>Aerial Landscape</h4></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>💒</span>
+                    <p>Wedding</p>
+                </div>
+                <div class="gallery-overlay"><h4>Sacred Moments</h4></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>🎬</span>
+                    <p>Sinematik</p>
+                </div>
+                <div class="gallery-overlay"><h4>Cinematic Story</h4></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>🚁</span>
+                    <p>Drone FPV</p>
+                </div>
+                <div class="gallery-overlay"><h4>FPV City Rush</h4></div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>📸</span>
+                    <p>Produk</p>
+                </div>
+                <div class="gallery-overlay"><h4>Product Shoot</h4></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="testi-inner">
+        <div class="section-header reveal">
+            <div class="section-tag">Testimoni</div>
+            <h2 class="section-title">Kata Mereka <em>Tentang Saya</em></h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="testi-track reveal">
+            <div class="testi-card">
+                <span class="quote-mark">"</span>
+                <p class="testi-text">Yusron berhasil mengabadikan setiap momen pernikahan kami dengan sangat indah dan natural. Hasil fotonya melebihi ekspektasi, setiap gambar terasa seperti halaman majalah fashion.</p>
+                <div class="testi-author">
+                    <div class="author-avatar">A</div>
+                    <div>
+                        <div class="author-name">Aditya & Rini</div>
+                        <div class="author-role">Klien Wedding</div>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <span class="quote-mark">"</span>
+                <p class="testi-text">Drone footage yang dihasilkan untuk proyek properti kami sangat profesional. Sudut pandang udara yang dipilih Yusron benar-benar menonjolkan keindahan lokasi kami secara maksimal.</p>
+                <div class="testi-author">
+                    <div class="author-avatar">B</div>
+                    <div>
+                        <div class="author-name">Budi Santoso</div>
+                        <div class="author-role">Developer Properti</div>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-inner">
+        <div class="contact-info reveal">
+            <div class="section-tag" style="display:inline-block">Kontak</div>
+            <h3 style="margin-top:16px">Mari Berkolaborasi<br><em style="font-style:italic; background:linear-gradient(45deg,#5e96da,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Bersama</em></h3>
+            <p style="margin-top:16px">Punya proyek menarik? Saya selalu terbuka untuk diskusi dan kolaborasi kreatif yang menghasilkan karya terbaik.</p>
+            <div class="contact-links">
+                <a href="mailto:yusronkediri65@email.com" class="contact-link">
+                    <span class="contact-link-icon">📧</span>
+                    <div>
+                        <div class="contact-link-label">Email</div>
+                        <div class="contact-link-value">yusronkediri65@email.com</div>
+                    </div>
+                </a>
+                <a href="https://wa.me/6285732069545" class="contact-link">
+                    <span class="contact-link-icon">💬</span>
+                    <div>
+                        <div class="contact-link-label">WhatsApp</div>
+                        <div class="contact-link-value">+62 812-3456-7890</div>
+                    </div>
+                </a>
+                <a href="#" class="contact-link">
+                    <span class="contact-link-icon">📍</span>
+                    <div>
+                        <div class="contact-link-label">Lokasi</div>
+                        <div class="contact-link-value">Malang, Jawa Timur</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="contact-form reveal reveal-delay-2">
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" placeholder="Masukkan nama Anda">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="email@anda.com">
+            </div>
+            <div class="form-group">
+                <label>Jenis Layanan</label>
+                <input type="text" placeholder="Fotografi, Videografi, Drone...">
+            </div>
+            <div class="form-group">
+                <label>Pesan</label>
+                <textarea placeholder="Ceritakan proyek Anda..."></textarea>
+            </div>
+            <button class="submit-btn">Kirim Pesan ✦</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">M. Yusron Hariri</div>
+        <div class="footer-copy">© 2025 · All rights reserved</div>
+        <div class="social-links">
+            <a href="#" class="social-link">📸</a>
+            <a href="#" class="social-link">🎬</a>
+            <a href="#" class="social-link">💼</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Counter animation
+    function animateCounter(el) {
+        const target = +el.dataset.count;
+        const duration = 1800;
+        const start = performance.now();
+        function update(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.floor(ease * target) + (p < 1 ? '' : '+');
+            if (p < 1) requestAnimationFrame(update);
+            else el.textContent = target + '+';
+        }
+        requestAnimationFrame(update);
+    }
+    const statsObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelectorAll('[data-count]').forEach(animateCounter);
+                statsObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.about-card').forEach(el => statsObs.observe(el));
+
+    // Gallery filter (visual only)
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // Smooth active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 200) current = s.id;
+        });
+        navLinks.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + current ? '#fff' : '';
+        });
+    });
+</script>
+</body>
+</html>
